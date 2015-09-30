@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataAppendService" targetNamespace="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IDataAppendService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://www.callcredit.co.uk/Common/ServiceStarter/Interfaces/1.0" elementFormDefault="qualified" targetNamespace="http://www.callcredit.co.uk/Common/ServiceStarter/Interfaces/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="Test">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="request" nillable="true" type="tns:TestDataRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="TestDataRequest">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:element name="TestDataRequest" nillable="true" type="tns:TestDataRequest" />
+      <xs:element name="TestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="TestResult" nillable="true" type="tns:TestDataResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="TestDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TestDataResponse" nillable="true" type="tns:TestDataResponse" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetDataVariables">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="request" nillable="true" type="q1:DataVariablesRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DataVariablesRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClientUrn" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ClientBillingRef" nillable="true" type="xs:string" />
+          <xs:element name="Purpose" nillable="true" type="xs:string" />
+          <xs:element name="Licence" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AddressLines" nillable="true" type="q2:ArrayOfstring" />
+          <xs:element xmlns:q3="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="AddressElements" nillable="true" type="q3:AddressElements" />
+          <xs:element minOccurs="0" name="Postcode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Fullname" nillable="true" type="xs:string" />
+          <xs:element xmlns:q4="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="NameElements" nillable="true" type="q4:NameElements" />
+          <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DateOfBirth" type="xs:dateTime" />
+          <xs:element xmlns:q5="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="KeyFields" nillable="true" type="q5:ArrayOfKeyField" />
+          <xs:element xmlns:q6="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="RequestedFields" nillable="true" type="q6:ArrayOfRequestedField" />
+          <xs:element xmlns:q7="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="Options" nillable="true" type="q7:ArrayOfOption" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q8="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="DataVariablesRequest" nillable="true" type="q8:DataVariablesRequest" />
+      <xs:complexType name="AddressElements">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Organisation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SubBuildingName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BuildingName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BuildingNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DependentThoroughfare" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Thoroughfare" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DependentLocality" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Locality" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Town" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q9="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="AddressElements" nillable="true" type="q9:AddressElements" />
+      <xs:complexType name="NameElements">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Forename" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q10="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="NameElements" nillable="true" type="q10:NameElements" />
+      <xs:complexType name="ArrayOfKeyField">
+        <xs:sequence>
+          <xs:element xmlns:q11="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="KeyField" nillable="true" type="q11:KeyField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q12="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfKeyField" nillable="true" type="q12:ArrayOfKeyField" />
+      <xs:complexType name="KeyField">
+        <xs:sequence>
+          <xs:element name="Field" nillable="true" type="xs:string" />
+          <xs:element name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q13="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="KeyField" nillable="true" type="q13:KeyField" />
+      <xs:complexType name="ArrayOfRequestedField">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="RequestedField" nillable="true" type="q14:RequestedField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q15="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfRequestedField" nillable="true" type="q15:ArrayOfRequestedField" />
+      <xs:complexType name="RequestedField">
+        <xs:sequence>
+          <xs:element name="Field" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q16="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="RequestedField" nillable="true" type="q16:RequestedField" />
+      <xs:complexType name="ArrayOfOption">
+        <xs:sequence>
+          <xs:element xmlns:q17="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="Option" nillable="true" type="q17:Option" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q18="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfOption" nillable="true" type="q18:ArrayOfOption" />
+      <xs:complexType name="Option">
+        <xs:sequence>
+          <xs:element name="Key" nillable="true" type="xs:string" />
+          <xs:element name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q19="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="Option" nillable="true" type="q19:Option" />
+      <xs:element name="GetDataVariablesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q20="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="GetDataVariablesResult" nillable="true" type="q20:DataVariablesResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DataVariablesResponse">
+        <xs:sequence>
+          <xs:element name="RequestGuid" type="ser:guid" />
+          <xs:element name="Status" nillable="true" type="xs:string" />
+          <xs:element xmlns:q21="http://www.callcredit.co.uk/Common/Base/Error/1.0" name="Error" nillable="true" type="q21:Error" />
+          <xs:element xmlns:q22="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="MatchLevels" nillable="true" type="q22:ArrayOfMatchLevel" />
+          <xs:element xmlns:q23="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="OutputFields" nillable="true" type="q23:ArrayOfOutputField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q24="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="DataVariablesResponse" nillable="true" type="q24:DataVariablesResponse" />
+      <xs:complexType name="ArrayOfMatchLevel">
+        <xs:sequence>
+          <xs:element xmlns:q25="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="MatchLevel" nillable="true" type="q25:MatchLevel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q26="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfMatchLevel" nillable="true" type="q26:ArrayOfMatchLevel" />
+      <xs:complexType name="MatchLevel">
+        <xs:sequence>
+          <xs:element name="Dataset" nillable="true" type="xs:string" />
+          <xs:element name="Level" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q27="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="MatchLevel" nillable="true" type="q27:MatchLevel" />
+      <xs:complexType name="ArrayOfOutputField">
+        <xs:sequence>
+          <xs:element xmlns:q28="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="OutputField" nillable="true" type="q28:OutputField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q29="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfOutputField" nillable="true" type="q29:ArrayOfOutputField" />
+      <xs:complexType name="OutputField">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Field" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q30="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="OutputField" nillable="true" type="q30:OutputField" />
+      <xs:element name="GetDatasets">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q31="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="request" nillable="true" type="q31:DatasetsRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DatasetsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ShowAll" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q32="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="DatasetsRequest" nillable="true" type="q32:DatasetsRequest" />
+      <xs:element name="GetDatasetsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q33="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="GetDatasetsResult" nillable="true" type="q33:DatasetsResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="DatasetsResponse">
+        <xs:sequence>
+          <xs:element name="RequestGuid" type="ser:guid" />
+          <xs:element name="Status" nillable="true" type="xs:string" />
+          <xs:element xmlns:q34="http://www.callcredit.co.uk/Common/Base/Error/1.0" name="Error" nillable="true" type="q34:Error" />
+          <xs:element xmlns:q35="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="Datasets" nillable="true" type="q35:ArrayOfDataset" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q36="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="DatasetsResponse" nillable="true" type="q36:DatasetsResponse" />
+      <xs:complexType name="ArrayOfDataset">
+        <xs:sequence>
+          <xs:element xmlns:q37="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="Dataset" nillable="true" type="q37:Dataset" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q38="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfDataset" nillable="true" type="q38:ArrayOfDataset" />
+      <xs:complexType name="Dataset">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Enabled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q39="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="Dataset" nillable="true" type="q39:Dataset" />
+      <xs:element name="GetFields">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q40="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="request" nillable="true" type="q40:FieldsRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="FieldsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DatasetName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ShowAll" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q41="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="FieldsRequest" nillable="true" type="q41:FieldsRequest" />
+      <xs:element name="GetFieldsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q42="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="GetFieldsResult" nillable="true" type="q42:FieldsResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="FieldsResponse">
+        <xs:sequence>
+          <xs:element name="RequestGuid" type="ser:guid" />
+          <xs:element name="Status" nillable="true" type="xs:string" />
+          <xs:element xmlns:q43="http://www.callcredit.co.uk/Common/Base/Error/1.0" name="Error" nillable="true" type="q43:Error" />
+          <xs:element xmlns:q44="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="Fields" nillable="true" type="q44:ArrayOfField" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q45="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="FieldsResponse" nillable="true" type="q45:FieldsResponse" />
+      <xs:complexType name="ArrayOfField">
+        <xs:sequence>
+          <xs:element xmlns:q46="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="Field" nillable="true" type="q46:Field" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q47="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfField" nillable="true" type="q47:ArrayOfField" />
+      <xs:complexType name="Field">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Dataset" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Level" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Length" type="xs:int" />
+          <xs:element minOccurs="0" name="HasLookups" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Enabled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q48="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="Field" nillable="true" type="q48:Field" />
+      <xs:element name="GetLookups">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q49="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="request" nillable="true" type="q49:LookupsRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="LookupsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DatasetName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q50="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="LookupsRequest" nillable="true" type="q50:LookupsRequest" />
+      <xs:element name="GetLookupsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q51="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="GetLookupsResult" nillable="true" type="q51:LookupsResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="LookupsResponse">
+        <xs:sequence>
+          <xs:element name="RequestGuid" type="ser:guid" />
+          <xs:element name="Status" nillable="true" type="xs:string" />
+          <xs:element xmlns:q52="http://www.callcredit.co.uk/Common/Base/Error/1.0" name="Error" nillable="true" type="q52:Error" />
+          <xs:element xmlns:q53="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" name="Lookups" nillable="true" type="q53:ArrayOfLookup" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q54="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="LookupsResponse" nillable="true" type="q54:LookupsResponse" />
+      <xs:complexType name="ArrayOfLookup">
+        <xs:sequence>
+          <xs:element xmlns:q55="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" minOccurs="0" maxOccurs="unbounded" name="Lookup" nillable="true" type="q55:Lookup" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q56="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="ArrayOfLookup" nillable="true" type="q56:ArrayOfLookup" />
+      <xs:complexType name="Lookup">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Dataset" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Field" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element xmlns:q57="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0" name="Lookup" nillable="true" type="q57:Lookup" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://www.callcredit.co.uk/Common/Base/Error/1.0" elementFormDefault="qualified" targetNamespace="http://www.callcredit.co.uk/Common/Base/Error/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Error">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorDetails" nillable="true" type="tns:ArrayOfErrorDetail" />
+          <xs:element name="Success" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Error" nillable="true" type="tns:Error" />
+      <xs:complexType name="ArrayOfErrorDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ErrorDetail" nillable="true" type="tns:ErrorDetail" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfErrorDetail" nillable="true" type="tns:ArrayOfErrorDetail" />
+      <xs:complexType name="ErrorDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ErrorDetail" nillable="true" type="tns:ErrorDetail" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IDataAppendService_Test_InputMessage">
+    <wsdl:part xmlns:q10="http://www.callcredit.co.uk/Common/ServiceStarter/Interfaces/1.0" name="parameters" element="q10:Test" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_Test_OutputMessage">
+    <wsdl:part xmlns:q11="http://www.callcredit.co.uk/Common/ServiceStarter/Interfaces/1.0" name="parameters" element="q11:TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetDataVariables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataVariables" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetDataVariables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetDataVariables_IOperationFaultDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q12:anyType" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetDatasets_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDatasets" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetDatasets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDatasetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetDatasets_IOperationFaultDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q13:anyType" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetFields_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFields" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetFields_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetFields_IOperationFaultDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q14:anyType" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetLookups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookups" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetLookups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataAppendService_GetLookups_IOperationFaultDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/" name="detail" element="q15:anyType" />
+  </wsdl:message>
+  <wsdl:portType name="IDataAppendService">
+    <wsdl:operation name="Test">
+      <wsdl:input wsaw:Action="http://www.callcredit.co.uk/Common/ServiceStarter/Interfaces/1.0/IServiceModule/Test" message="tns:IDataAppendService_Test_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.callcredit.co.uk/Common/ServiceStarter/Interfaces/1.0/IServiceModule/TestResponse" message="tns:IDataAppendService_Test_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataVariables">
+      <wsdl:input wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDataVariables" message="tns:IDataAppendService_GetDataVariables_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDataVariablesResponse" message="tns:IDataAppendService_GetDataVariables_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDataVariablesIOperationFaultDetailsFault" name="IOperationFaultDetailsFault" message="tns:IDataAppendService_GetDataVariables_IOperationFaultDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDatasets">
+      <wsdl:input wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDatasets" message="tns:IDataAppendService_GetDatasets_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDatasetsResponse" message="tns:IDataAppendService_GetDatasets_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDatasetsIOperationFaultDetailsFault" name="IOperationFaultDetailsFault" message="tns:IDataAppendService_GetDatasets_IOperationFaultDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFields">
+      <wsdl:input wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetFields" message="tns:IDataAppendService_GetFields_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetFieldsResponse" message="tns:IDataAppendService_GetFields_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetFieldsIOperationFaultDetailsFault" name="IOperationFaultDetailsFault" message="tns:IDataAppendService_GetFields_IOperationFaultDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookups">
+      <wsdl:input wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetLookups" message="tns:IDataAppendService_GetLookups_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetLookupsResponse" message="tns:IDataAppendService_GetLookups_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetLookupsIOperationFaultDetailsFault" name="IOperationFaultDetailsFault" message="tns:IDataAppendService_GetLookups_IOperationFaultDetailsFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDataAppendService" type="tns:IDataAppendService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IDataAppendService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://www.callcredit.co.uk/Common/ServiceStarter/Interfaces/1.0/IServiceModule/Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataVariables">
+      <soap:operation soapAction="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDataVariables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOperationFaultDetailsFault">
+        <soap:fault use="literal" name="IOperationFaultDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatasets">
+      <soap:operation soapAction="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetDatasets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOperationFaultDetailsFault">
+        <soap:fault use="literal" name="IOperationFaultDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetFields">
+      <soap:operation soapAction="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOperationFaultDetailsFault">
+        <soap:fault use="literal" name="IOperationFaultDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLookups">
+      <soap:operation soapAction="http://www.callcredit.co.uk/MsdWebApi/IDataAppendService/1.0/IDataAppendService/GetLookups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOperationFaultDetailsFault">
+        <soap:fault use="literal" name="IOperationFaultDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataAppendService">
+    <wsdl:port name="BasicHttpBinding_IDataAppendService" binding="tns:BasicHttpBinding_IDataAppendService">
+      <soap:address location="https://ct-api.callcreditmarketing.com/MsdWebAPI/DataAppendService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
